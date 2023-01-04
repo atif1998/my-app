@@ -1,28 +1,44 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "./ComponentA";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteTodo, updateTodo } from "../counter/CounterSlice";
 
-export function ComponentB() {
-  const count = useSelector((state) => state.counter.value);
+export default function ComponentB(props) {
+  const { todo } = props;
   const dispatch = useDispatch();
 
-  return (
-    <div>
-      <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
-    </div>
+  const [isEdit, setIsEdit] = useState(false);
+  const [editValue, setEditValue] = useState(todo.text);
+
+  const saveTodo = (e) => {
+    e.preventDefault();
+    const payload = {
+      id: todo.id,
+      text: editValue,
+    };
+    dispatch(updateTodo(payload));
+    cancelEdit();
+  };
+
+  const cancelEdit = () => {
+    setIsEdit(false);
+  };
+
+  return isEdit ? (
+    <form onSubmit={saveTodo}>
+      <input
+        type="text"
+        value={editValue}
+        onChange={(e) => setEditValue(e.target.value)}
+      />
+      <button type="submit">Save</button>
+      <button onClick={cancelEdit}>Cancel</button>
+    </form>
+  ) : (
+    <>
+      <span>{todo.text}</span>
+      <button onClick={() => setIsEdit(!isEdit)}>Edit</button>
+      <button onClick={() => dispatch(deleteTodo(todo.id))}>Delete</button>
+      <button type="submit">submit</button>
+    </>
   );
 }

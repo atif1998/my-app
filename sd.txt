@@ -1,0 +1,3 @@
+2 methods to export action 
+1: export actions in reducers
+2: creataction using creactaction

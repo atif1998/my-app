@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "apple watch",
+      "description": "watch",
+      "price": "2"
+    },
+    {
+      "id": "2",
+      "name": "apple mobile",
+      "description": "mobile",
+      "price": "222"
+    }
+  ]
+}
