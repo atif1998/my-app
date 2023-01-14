@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Col, Container, Row, Table, Button } from "reactstrap";
 import { removeProduct } from "../../counter/ProductSlice";
 
@@ -10,7 +11,10 @@ const CartPage = () => {
   const onDelete = (index) => {
     dispatch(removeProduct(index));
   };
-
+  const navigate = useNavigate();
+  const handler = (id) => {
+    navigate(`/edit/${id}`);
+  };
   return (
     <>
       <Container className="mt-4">
@@ -25,7 +29,6 @@ const CartPage = () => {
                   <th>Product Name</th>
                   <th>Description</th>
                   <th>Price</th>
-                  <th></th>
                 </tr>
               </thead>
               {products.length > 0 ? (
@@ -37,7 +40,11 @@ const CartPage = () => {
                       <td>{product.description}</td>
                       <td>{product.price}</td>
                       <td>
-                        <Button color="primary" className="mr-3, mb-2">
+                        <Button
+                          color="primary"
+                          className="mr-3, mb-2"
+                          onClick={() => handler(index + 1)}
+                        >
                           Edit
                         </Button>
                         <Button color="danger" onClick={() => onDelete(index)}>

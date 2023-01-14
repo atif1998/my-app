@@ -34,7 +34,7 @@ export const productsService = createApi({
     }),
   }),
 });
-
+console.log(productsService);
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const {
