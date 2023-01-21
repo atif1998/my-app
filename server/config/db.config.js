@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "localhost",
-    PORT: 27017,
-    DB: "bezkoder_db"
+    userName: "Muhammad Atif LATIF",
+    password: "emenust@12",
+    dbName: 'users'
 };
