@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 module.exports = function () {
-    const db = "";
+    const db = "mongodb+srv://Atif:emenust@12@cluster0.tsmvc2f.mongodb.net/test";
     mongoose.set('strictQuery', false)
     mongoose.connect(db, {
         useNewUrlParser: true,

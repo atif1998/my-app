@@ -14,7 +14,16 @@ const ProductSchema = new mongoose.Schema({
     pieces: {
         type: Number,
         default: 1,
-        required: true
+        default: true
     },
+    isDeleted: {
+        type: Boolean,
+        required: false
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
+    }
 })
 const Product = mongoose.model("Product", ProductSchema);
+module.exports = Product

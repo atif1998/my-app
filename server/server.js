@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const productRouter = require("./route/product.routes")
-const products = require("./../data.json")
 const app = express();
+require('dotenv').config()
+const productRouter = require("./route/product.routes")
+const userRouter = require("./route/user.route")
+const products = require("./../data.json")
 const db = require("./models")
 app.use(express.json())
 const Role = db.role
@@ -28,13 +30,23 @@ app.use((req, res, next) => {
 app.get("", (req, res) => {
   res.json({ products });
 });
-app.post("/api/add", productRouter)
-app.post("/users", (req, res) => {
-  const posts = req.body;
-  console.log(posts);
-  res.status(200).send('Succes')
+app.get("", (req, res) => {
+  res.json({ user });
 });
+app.use("/api/product", productRouter)
+app.post("/api/product", productRouter)
+app.put("/api/product", productRouter)
+app.delete("/api/product", productRouter)
 
+app.use("/api/user", userRouter)
+// app.post("/users", (req, res) => {
+//   const posts = req.body;
+//   console.log(posts);
+//   res.status(200).send('Succes')
+// });
+app.get("/", (req, res) => {
+  res.send("pain")
+})
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async () => {
@@ -96,5 +108,6 @@ function initial() {
 
 
 
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
+// require('./routes/auth.routes')(app);
+// require('./routes/user.routes')(app);
+
