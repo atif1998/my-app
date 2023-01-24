@@ -1,12 +1,12 @@
-const { JsonWebTokenError } = require("jsonwebtoken");
-
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.model")
 const authMiddleware = (req, res, next) => {
-    const { authrization } = req.headers;
-    const token = authrization;
+    const { authorization } = req.headers;
+    const token = authorization;
 
     if (!token) return res.status(401).send("Acces denied user in not authorized to use route")
     try {
-        const decode = JsonWebTokenError.verify(token.split(" ")[1], process.env.JWT_PRIVATE_KEY)
+        const decode = jwt.verify(token.split(" ")[1], process.env.JWT_PRIVATE_KEY)
         req.user = decode;
         next();
     }
@@ -15,4 +15,16 @@ const authMiddleware = (req, res, next) => {
     }
 }
 
-module.exports = { authMiddleware }
+const isDeleted = async (req, res, next) => {
+    const { id } = req.user;
+    const user = await User.findOnne({ _id: id, isDeleted: false })
+    if (!user) {
+        return res.status(400).send({
+            message: "user not found"
+        }
+        )
+    }
+    next()
+
+}
+module.exports = { authMiddleware, isDeleted }

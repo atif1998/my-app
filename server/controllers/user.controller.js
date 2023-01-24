@@ -48,7 +48,7 @@ const getProfile = async (req, res) => {
     console.log("inside get product")
     const { id, email, name } = req.user;
     try {
-        const users = await User.findById({ _id: id })
+        const users = await User.findById({ _id: id, isDeleted: false }).populate("products")
         res.send({ user, message: "profile fetched Succesfuly" })
     }
     catch (err) {

@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({
+    owner: {
+        type: mongoose.Types.ObjectId,
+        ref: "User"
+    },
     name: {
         type: String,
         default: "",
@@ -18,6 +22,12 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    products: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "Product"
+        }
+    ],
     createdAt: {
         type: Date,
         default: new Date()

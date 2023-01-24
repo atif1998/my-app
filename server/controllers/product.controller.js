@@ -1,5 +1,6 @@
 const Product = require("../models/product.models")
 const mongodb = require('mongodb');
+const User = require("../models/user.model");
 
 const getAllProducts = async (req, res) => {
     console.log("Inside all products")
@@ -8,7 +9,11 @@ const getAllProducts = async (req, res) => {
 }
 const addProduct = async (req, res) => {
     console.log("added")
-    const product = await Product.create({ ...req.body })
+    const { id, email, name } = req.user;
+    const product = await Product.create({ ...req.body, owner: id })
+    const owner = await User.findById({ _id: id })
+    owner.products.push(product._id)
+    owner.save()
     res.send({
         product,
         message: "Product added succedfully"
@@ -21,6 +26,11 @@ const editUser = async (req, res) => {
         product: updatedProduct,
         message: "product added succesfuly"
     })
+
+}
+const findById = async (req, res) => {
+    console.log("inside findbyid");
+    const product = await Product.findById({ _id: req.params.id }.populate("owner"))
 
 }
 
