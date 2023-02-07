@@ -11,13 +11,16 @@ import {
   Button,
   Spinner,
 } from "reactstrap";
-import { useGetAllProductsQuery } from "../../Services/product.service";
+import {
+  useGetAllProductsQuery,
+  useLazyGetAllProductsQuery,
+} from "../../Services/product.service";
 import { addProduct } from "../../counter/ProductSlice";
 
 const Products = () => {
-  const { data: products, isLoading } = useGetAllProductsQuery();
+  const { data: products, isLoading, isError } = useGetAllProductsQuery();
   const dispatch = useDispatch();
-  console.log(products);
+
   const onAddToCart = (product) => {
     dispatch(addProduct(product));
   };

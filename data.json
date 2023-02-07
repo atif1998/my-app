@@ -1,4 +1,13 @@
 {
+  "products":[
+    {
+      "id": 1,
+      "name": "sss",
+      "description":"sss",
+      "price":222
+    }
+
+  ],
   "users": [
     {
       "id": 1,

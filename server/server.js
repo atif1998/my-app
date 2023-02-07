@@ -14,7 +14,9 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.use(cors({
+  cors: '*'
+}))
 // parse requests of content-type - application/json
 app.use(express.json());
 
@@ -39,6 +41,7 @@ app.put("/api/product", productRouter)
 app.delete("/api/product", productRouter)
 
 app.use("/api/user", userRouter)
+// app.get("/api/user", userRouter)
 // app.post("/users", (req, res) => {
 //   const posts = req.body;
 //   console.log(posts);

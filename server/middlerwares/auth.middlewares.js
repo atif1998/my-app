@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model")
+console.log(User)
 const authMiddleware = (req, res, next) => {
     const { authorization } = req.headers;
     const token = authorization;
@@ -16,8 +17,9 @@ const authMiddleware = (req, res, next) => {
 }
 
 const isDeleted = async (req, res, next) => {
+    console.log("in isdeleted")
     const { id } = req.user;
-    const user = await User.findOnne({ _id: id, isDeleted: false })
+    const user = await User.findOne({ _id: id, isDeleted: false })
     if (!user) {
         return res.status(400).send({
             message: "user not found"

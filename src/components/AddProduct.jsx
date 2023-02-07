@@ -17,7 +17,7 @@ const AddProduct = () => {
     }));
   };
   const postMethod = async () => {
-    const rawResponse = await fetch("http://localhost:3004/users", {
+    const rawResponse = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",

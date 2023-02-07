@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user.model')
 const registerUser = async (req, res) => {
-    console.log("inside register")
+    console.log("inside register", req)
     const { password, ...rest } = req.body
     const exist = await User.findOne({ email: rest.email, isdeleted: false })
     if (exist) return res.status(400).send("user already exist")
@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     console.log("inside login")
     const { password, email } = req.body;
-    const user = await User.findOne({ email, isDeleted: false });
+    const user = await User.findOne({ email: email, isDeleted: false });
     if (!user) return res.status(400).send({ message: "User not Found" })
     try {
         const response = await bcrypt.compare(password, user.password)
@@ -35,6 +35,7 @@ const loginUser = async (req, res) => {
             process.env.JWT_PRIVATE_KEY);
         console.log("token", token)
         return res.send({ user, token, message: "User Logged in" })
+
     }
     catch (err) {
         console.log("error", err)
@@ -46,9 +47,12 @@ const loginUser = async (req, res) => {
 }
 const getProfile = async (req, res) => {
     console.log("inside get product")
-    const { id, email, name } = req.user;
+    const { id } = req.user;
+    console.log(id)
+
     try {
-        const users = await User.findById({ _id: id, isDeleted: false }).populate("products")
+        const user = await User.findById({ _id: id, isDeleted: false }).populate("products")
+        console.log(user)
         res.send({ user, message: "profile fetched Succesfuly" })
     }
     catch (err) {
