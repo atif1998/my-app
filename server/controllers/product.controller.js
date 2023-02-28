@@ -30,17 +30,21 @@ const editUser = async (req, res) => {
 }
 const findById = async (req, res) => {
     console.log("inside findbyid");
-    const product = await Product.findById({ _id: req.params.id }.populate("owner"))
+    const product = await Product.findById({ _id: req.params.id }).populate("owner")
+    res.send({
+        product,
+        message: "product fetched successfuly",
+    });
 
 }
-
 const removeUser = async (req, res) => {
     console.log("inside delete api")
-    await Product.findByIdAndUpdate({ _id: req.params.id }, { isDeleted: true }, { new: true })
-    req.send({
+    await Product.deleteOne({ _id: req.params.id })
+    res.send({
+
         message: "deleted Succesfuly"
     })
 
 }
 
-module.exports = { getAllProducts, addProduct, editUser, removeUser }
+module.exports = { getAllProducts, addProduct, editUser, removeUser, findById }
