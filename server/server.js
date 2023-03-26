@@ -5,14 +5,14 @@ require('dotenv').config()
 const productRouter = require("./routes/product.routes")
 const userRouter = require("./routes/user.route")
 const products = require("./../data.json")
+const { chats } = require("./data/data")
 const db = require("./models")
 app.use(express.json())
-const Role = db.role
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require('mongodb');
+const { json } = require("express");
 var corsOptions = {
   origin: "http://localhost:3000",
 };
-
 app.use(cors(corsOptions));
 app.use(cors({
   cors: '*'
@@ -35,23 +35,24 @@ app.get("", (req, res) => {
 app.get("", (req, res) => {
   res.json({ user });
 });
+app.get("/api/chat", (req, res) => {
+  res.send(chats)
+})
+app.get("/api/chat/:id", (req, res) => {
+
+  const singlechat = chats.find((c) => c._id === req.params.id)
+  res.send(singlechat)
+})
 app.use("/api/product", productRouter)
 app.post("/api/product", productRouter)
 app.put("/api/product", productRouter)
 app.delete("/api/product", productRouter)
 
 app.use("/api/user", userRouter)
-// app.get("/api/user", userRouter)
-// app.post("/users", (req, res) => {
-//   const posts = req.body;
-//   console.log(posts);
-//   res.status(200).send('Succes')
-// });
-app.get("/", (req, res) => {
-  res.send("pain")
-})
+
+
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 app.listen(PORT, async () => {
   const uri = "mongodb+srv://Atif:emenust@12@cluster0.tsmvc2f.mongodb.net/test"
   const client = new MongoClient(uri)
@@ -59,55 +60,8 @@ app.listen(PORT, async () => {
   console.log("client connected succesfully")
   console.log(`Server is running on port ${PORT}.`);
 });
-db.mongoose
-  .connect("mongodb+srv://Atif:emenust@12@cluster0.tsmvc2f.mongodb.net/users", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Successfully connect to MongoDB.");
-    initial();
-  })
-  .catch(err => {
-    console.error("Connection error", err);
-    process.exit();
-  });
 
-function initial() {
-  Role.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Role({
-        name: "user"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
 
-        console.log("added 'user' to roles collection");
-      });
-
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
-
-      new Role({
-        name: "admin"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'admin' to roles collection");
-      });
-    }
-  });
-}
 
 
 

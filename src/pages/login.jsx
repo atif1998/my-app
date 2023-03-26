@@ -88,7 +88,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5 mx-5">
+    <div className="container mt-3 mx-3">
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Login</legend>

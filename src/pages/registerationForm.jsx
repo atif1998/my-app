@@ -42,7 +42,7 @@ function RegistrationForm() {
         ...values,
       });
       console.log(res);
-      navigate("/login");
+      // navigate("/login");
     } catch (err) {
       console.log("failed to register", err);
     }
@@ -142,8 +142,8 @@ function RegistrationForm() {
                   </div>
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                    // disabled={isSubmitting}
+                    // className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                   >
                     Sign Up
                   </button>
