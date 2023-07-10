@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
+const session = require("express-session");
 const cors = require("cors");
 require("./models/db")();
 require("dotenv").config();
 require("./config/db.config")();
+require("./auth");
 
-const FacebookStrategy = require("passport-facebook").Strategy;
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const productRouter = require("./routes/product.routes");
 const userRouter = require("./routes/user.route");
 const todoRouter = require("./routes/todo.routes");
@@ -29,36 +29,51 @@ app.use(express.json());
 
 // simple route
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: "muhammadatiflatif5468@gmail.com",
-      clientSecret: "utrfeimgvktbdlvx",
-      callbackURL: "/auth/google/callback",
-    },
-    (accessToken, refreshToken, profile, done) => {
-      return done(null, profile);
-    }
-  )
-);
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
-
-// Google callback route
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
-
 app.get("/sendmail", sendMail);
 app.use("/api/product", productRouter);
 app.use("/api/user", userRouter);
 app.use("/api/todo", todoRouter);
+
+// auth 2
+
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
+
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/", (req, res) => {
+  res.send('<a href="/auth/google">Authenticate with Google</a>');
+});
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+app.get(
+  "auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/protected",
+    failureRedirect: "/auth/google/failure",
+  })
+);
+
+app.get("/protected", isLoggedIn, (req, res) => {
+  res.send(`Hello ${req.user.displayName}`);
+});
+
+app.get("/logout", (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.send("Goodbye!");
+});
+
+app.get("/auth/google/failure", (req, res) => {
+  res.send("Failed to authenticate..");
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8090;
