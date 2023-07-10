@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 const { getUsers } = require("./user.controller");
 
-
 const sendMail = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -10,12 +9,9 @@ const sendMail = async (req, res) => {
       pass: "utrfeimgvktbdlvx",
     },
   });
-  const Emails=getUsers();
-  console.log(Emails);
-  var maillist = [
-    "malatif39@ee.ceme.edu.pk",
-    "atiflatif5468@gmail.com"
-  ];
+  // const Emails=getUsers();
+  // console.log(Emails);
+  var maillist = ["malatif39@ee.ceme.edu.pk", "atiflatif5468@gmail.com"];
   const info = await transporter.sendMail({
     from: "muhammadatiflatif5468@gmail.com", // sender address
     to: maillist, // list of receivers
@@ -23,7 +19,7 @@ const sendMail = async (req, res) => {
     text: "mei PTI se isteefa deta ho, mei aik muhab e watan Pakistani hon ", // plain text body
   });
 
-  console.log(  "Message sent: %s",  info.messageId, info.messageSize);
+  console.log("Message sent: %s", info.messageId, info.messageSize);
   res.json(info);
 };
 
