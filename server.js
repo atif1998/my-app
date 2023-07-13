@@ -62,7 +62,8 @@ app.get(
 );
 
 app.get("/protected", isLoggedIn, (req, res) => {
-  res.send(`Hello ${req.user.displayName}`);
+  console.log(req.user);
+  res.send(`Hello ${req.user?.email} and ${req.user.name}`);
 });
 
 app.get("/logout", (req, res) => {
