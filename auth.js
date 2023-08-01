@@ -3,9 +3,8 @@ const GoogleStrategy = require("passport-google-oauth2").Strategy;
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        "979022512975-bit87n3u97an8gcs5jt13s3cl4bh7rrr.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "http://localhost:8090/google/callback",
       passReqToCallback: true,
     },
@@ -16,9 +15,12 @@ passport.use(
 );
 
 passport.serializeUser(function (user, done) {
-  done(null, user);
+  // Store the user's ID in the session
+  done(null, user, user.id);
 });
 
 passport.deserializeUser(function (user, done) {
+  // Find the user in the database or data source based on the stored ID
+
   done(null, user);
 });

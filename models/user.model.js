@@ -1,47 +1,59 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-    owner: {
-        type: mongoose.Types.ObjectId,
-        ref: "User"
+  owner: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+  },
+  name: {
+    type: String,
+    default: "",
+    required: [true, "please enter a name"],
+  },
+  age: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  contact: {
+    type: Number,
+    default: "",
+    required: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    required: [true, "please enter a valid email address"],
+  },
+  password: {
+    type: String,
+    required: [true, "please enter a valid password"],
+    minlength: 8,
+  },
+  passwordConfirmation: {
+    type: String,
+    required: [true, "please enter a valid password"],
+    validate: {
+      validator: function (el) {
+        return el == this.password;
+      },
     },
-    name: {
-        type: String,
-        default: "",
-        required: true
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
+  products: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Product",
     },
-    age: {
-        type: String,
-        default: "",
-        required: true
-    },
-    contact: {
-        type: Number,
-        default: "",
-        required: true
-    },
-    email: {
-        type: String,
-        lowercase: true,
-        required: true
-    },
-    password: {
-        type: String
-    },
-    isDeleted: {
-        type: Boolean,
-        default: false
-    },
-    products: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: "Product"
-        }
-    ],
-    createdAt: {
-        type: Date,
-        default: new Date()
-    }
-})
+  ],
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
+});
 const User = mongoose.model("User", UserSchema);
-module.exports = User
+module.exports = User;
