@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-const { getUsers } = require("./user.controller");
 
 const sendMail = async (req, res) => {
   const transporter = nodemailer.createTransport({
@@ -22,5 +21,4 @@ const sendMail = async (req, res) => {
   console.log("Message sent: %s", info.messageId, info.messageSize);
   res.json(info);
 };
-
 module.exports = sendMail;

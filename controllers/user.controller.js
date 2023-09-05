@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+
 const registerUser = async (req, res) => {
   console.log("inside register", req);
   const { password, ...rest } = req.body;
@@ -51,9 +52,9 @@ const getProfile = async (req, res) => {
   console.log(id);
   try {
     const user = await User.findById({ _id: id, isDeleted: false });
-    const { email } = user;
-    console.log(user, email);
-    res.send({ email, message: "profile fetched Succesfuly" });
+    const { email, ...rest } = user;
+    console.log(user, email, rest);
+    res.send({ email, rest, message: "profile fetched Succesfuly" });
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -65,11 +66,8 @@ const getUsers = async (req, res) => {
     res.status(500);
     throw new Error("Something went wrong");
   }
-  const emails = users.map((user) => user.email); // Extract user emails
-
-  // res.status(200).json(emails); // Send only the emails as the response
-  
-  console.log(emails)
+  const emails = users.map((user) => user.email);
+  console.log(emails);
   return emails;
 };
 const deleteUser = async (req, res) => {
@@ -95,7 +93,6 @@ const updateUser = async (req, res) => {
     message: "User updated successfuly",
   });
 };
-
 
 module.exports = {
   registerUser,
