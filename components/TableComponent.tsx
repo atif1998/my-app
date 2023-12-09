@@ -13,7 +13,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpDown,
+  ChevronDown,
+  MoreHorizontal,
+  MoreVertical,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -39,40 +44,82 @@ import {
 const data: Payment[] = [
   {
     id: "m5gr84i9",
+    name: "ATIF",
+    userName: "atif@gmail.com",
+    city: "New York",
+    phone: 123456789,
+    jobTitle: "software",
+    department: "Urology",
+    facility: " Care Medical",
+    blockSignIn: "No",
     amount: 316,
-    status: "success",
     email: "ken99@yahoo.com",
   },
   {
     id: "3u1reuv4",
+    name: "ATIF",
+    userName: "atif@gmail.com",
+    city: "New York",
+    phone: 123456789,
+    jobTitle: "software",
+    department: "Urology",
+    facility: " Care Medical",
+    blockSignIn: "No",
     amount: 242,
-    status: "success",
     email: "Abe45@gmail.com",
   },
   {
     id: "derv1ws0",
+    name: "Zahoor",
+    userName: "atif@gmail.com",
+    city: "New York",
+    phone: 123456789,
+    jobTitle: "software",
+    department: "Urology",
+    facility: " Care Medical",
+    blockSignIn: "No",
     amount: 837,
-    status: "processing",
     email: "Monserrat44@gmail.com",
   },
   {
     id: "5kma53ae",
+    name: "ASIM",
+    userName: "atif@gmail.com",
+    city: "New York",
+    phone: 123456789,
+    jobTitle: "software",
+    department: "Urology",
+    facility: " Care Medical",
+    blockSignIn: "No",
     amount: 874,
-    status: "success",
     email: "Silas22@gmail.com",
   },
   {
     id: "bhqecj4p",
+    name: "JAWAD",
+    userName: "atif@gmail.com",
+    city: "New York",
+    phone: 123456789,
+    jobTitle: "software",
+    department: "Urology",
+    facility: " Care Medical",
+    blockSignIn: "No",
     amount: 721,
-    status: "failed",
     email: "carmella@hotmail.com",
   },
 ];
 
 export type Payment = {
   id: string;
+  name: string;
+  userName: String;
+  city: string;
+  phone: number;
+  jobTitle: string;
+  department: string;
   amount: number;
-  status: "pending" | "processing" | "success" | "failed";
+  facility: string;
+  blockSignIn: string;
   email: string;
 };
 
@@ -99,11 +146,62 @@ export const columns: ColumnDef<Payment>[] = [
     enableSorting: false,
     enableHiding: false,
   },
+
   {
-    accessorKey: "status",
-    header: "Status",
+    id: "name",
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+  },
+  {
+    id: "userName",
+    accessorKey: "userName",
+    header: "Username",
+    cell: ({ row }) => <div>{row.getValue("userName")}</div>,
+  },
+
+  {
+    id: "jobTitle",
+    accessorKey: "jobTitle",
+    header: "Job Title",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("jobTitle")}</div>
+    ),
+  },
+  {
+    id: "department",
+    accessorKey: "department",
+    header: "Department",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("department")}</div>
+    ),
+  },
+  {
+    id: "city",
+    accessorKey: "city",
+    header: "City",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("city")}</div>,
+  },
+  {
+    id: "phone",
+    accessorKey: "phone",
+    header: "Phone",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("phone")}</div>
+    ),
+  },
+  {
+    id: "facility",
+    accessorKey: "facility",
+    header: "Facility",
+    cell: ({ row }) => <span>{row.getValue("facility")}</span>,
+  },
+  {
+    id: "blockSignIn",
+    accessorKey: "blockSignIn",
+    header: "Block signin",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("blockSignIn")}</div>
     ),
   },
   {
@@ -145,21 +243,26 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
+            <Button variant="ghost" className="h-8 w-8 p-0 actions-cell">
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
+              <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Sceduelling</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuLabel>Sceduelling</DropdownMenuLabel>
+            <DropdownMenuLabel>Manage chats</DropdownMenuLabel>
+            <DropdownMenuLabel>View User info</DropdownMenuLabel>
+            <DropdownMenuLabel>Update User Info</DropdownMenuLabel>
+            <DropdownMenuLabel>Remove User</DropdownMenuLabel>
+            <DropdownMenuLabel>Disable Signin</DropdownMenuLabel>
+            <DropdownMenuItem>Cancel</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -199,10 +302,10 @@ export function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Search by name or title"
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
