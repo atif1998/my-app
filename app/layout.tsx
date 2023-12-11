@@ -22,8 +22,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="mx-auto max-w-5xl text-2xl gap-2 mb-10">
-            <Navbar />
+          <div>
+            {/* <Navbar /> */}
             {children}{" "}
           </div>
         </ThemeProvider>

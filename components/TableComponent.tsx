@@ -13,6 +13,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { TiEye } from "react-icons/ti";
+import { AiFillEdit } from "react-icons/ai";
 import {
   ArrowUpDown,
   ChevronDown,
@@ -40,6 +42,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Switch } from "./ui/switch";
 
 const data: Payment[] = [
   {
@@ -248,21 +251,77 @@ export const columns: ColumnDef<Payment>[] = [
               <MoreVertical className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Sceduelling</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+          <DropdownMenuContent
+            align="end"
+            style={{
+              borderRadius: "20px 0px 20px 20px",
+              width: "218px",
+              height: "275px",
+            }}
+          >
+            <DropdownMenuLabel
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "10px",
+                height: "50px",
+              }}
             >
-              Copy payment ID
-            </DropdownMenuItem>
+              <TiEye />
+              View User info
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuLabel>Sceduelling</DropdownMenuLabel>
-            <DropdownMenuLabel>Manage chats</DropdownMenuLabel>
-            <DropdownMenuLabel>View User info</DropdownMenuLabel>
-            <DropdownMenuLabel>Update User Info</DropdownMenuLabel>
-            <DropdownMenuLabel>Remove User</DropdownMenuLabel>
-            <DropdownMenuLabel>Disable Signin</DropdownMenuLabel>
-            <DropdownMenuItem>Cancel</DropdownMenuItem>
+            <DropdownMenuLabel
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "10px",
+                height: "50x",
+              }}
+            >
+              <AiFillEdit />
+              Update User info
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuLabel
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "10px",
+                height: "50px",
+              }}
+            >
+              Remove User
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuLabel
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: "10px",
+                height: "50px",
+              }}
+            >
+              {" "}
+              <AiFillEdit />
+              Disable Signin <Switch />
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "10px",
+                height: "50px",
+              }}
+            >
+              Cancel
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

@@ -13,6 +13,7 @@ import {
 import { render } from "react-dom";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { FcGoogle } from "react-icons/fc";
 
 const formSchema = z
   .object({
@@ -42,64 +43,59 @@ function Register() {
   return (
     <div>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleSubmit)}
-          className="max-w-md w-full flex flex-col gap-4"
-        >
+        <form onSubmit={form.handleSubmit(handleSubmit)}>
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Email address"
-                      type="email"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Type here..." type="email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => {
-              return (
+          <div>
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>ConfirmPassword</FormLabel>
-                  <FormControl>
                     <Input
-                      placeholder="Confirm Password"
+                      placeholder="Type here..."
                       type="password"
                       {...field}
+                      style={{ width: "50%" }}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              );
-            }}
-          />
-          <Button type="submit">submit</Button>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Type here..."
+                      type="password"
+                      {...field}
+                      style={{ width: "50%" }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Button type="submit">Submit</Button>
         </form>
       </Form>
     </div>

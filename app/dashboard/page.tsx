@@ -1,5 +1,11 @@
+import { Detail } from "@/components/Detail";
+
 const Dashboard = () => {
-  return <div> Dashboard</div>;
+  return (
+    <div>
+      <Detail />
+    </div>
+  );
 };
 
 export default Dashboard;
