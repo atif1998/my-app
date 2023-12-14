@@ -38,7 +38,11 @@ function Register() {
       email: "",
     },
   });
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    console.log("submit");
+    const formData = form.getValues();
+    console.log("Form Data:", formData);
+  };
 
   return (
     <div>

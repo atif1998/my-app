@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import { TiEye } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 import {
   ArrowUpDown,
   ChevronDown,
@@ -43,6 +44,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Switch } from "./ui/switch";
+import PaginationDemo from "./Pagination";
 
 const data: Payment[] = [
   {
@@ -96,6 +98,19 @@ const data: Payment[] = [
     blockSignIn: "No",
     amount: 874,
     email: "Silas22@gmail.com",
+  },
+  {
+    id: "bhqecj4p",
+    name: "JAWAD",
+    userName: "atif@gmail.com",
+    city: "New York",
+    phone: 123456789,
+    jobTitle: "software",
+    department: "Urology",
+    facility: " Care Medical",
+    blockSignIn: "No",
+    amount: 721,
+    email: "carmella@hotmail.com",
   },
   {
     id: "bhqecj4p",
@@ -207,36 +222,7 @@ export const columns: ColumnDef<Payment>[] = [
       <div className="capitalize">{row.getValue("blockSignIn")}</div>
     ),
   },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  },
   {
     id: "actions",
     enableHiding: false,
@@ -264,8 +250,8 @@ export const columns: ColumnDef<Payment>[] = [
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                gap: "10px",
-                height: "50px",
+                gap: "15px",
+                height: "47px",
               }}
             >
               <TiEye />
@@ -277,8 +263,8 @@ export const columns: ColumnDef<Payment>[] = [
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                gap: "10px",
-                height: "50x",
+                gap: "15px",
+                height: "47px",
               }}
             >
               <AiFillEdit />
@@ -290,25 +276,33 @@ export const columns: ColumnDef<Payment>[] = [
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                gap: "10px",
-                height: "50px",
+                gap: "15px",
+                height: "47px",
               }}
             >
+              <MdDelete />
               Remove User
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuLabel
               style={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
-                gap: "10px",
-                height: "50px",
+                gap: "15px",
+                height: "47px",
               }}
             >
               {" "}
               <AiFillEdit />
-              Disable Signin <Switch />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                Disable Signin <Switch />
+              </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem
@@ -316,8 +310,9 @@ export const columns: ColumnDef<Payment>[] = [
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                gap: "10px",
-                height: "50px",
+                gap: "15px",
+                height: "47px",
+                marginLeft: "24px",
               }}
             >
               Cancel
@@ -446,12 +441,12 @@ export function DataTableDemo() {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
+        {/* <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
+        </div> */}
         <div className="space-x-2">
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
@@ -466,7 +461,8 @@ export function DataTableDemo() {
             disabled={!table.getCanNextPage()}
           >
             Next
-          </Button>
+          </Button> */}
+          <PaginationDemo />
         </div>
       </div>
     </div>

@@ -187,7 +187,14 @@ export const Login = () => {
               Login with Phone
             </p>
           </Button>
-          <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <input type="checkbox" />
             <p>I have read & agree to the </p>
             <p>Terms of use</p>
           </div>

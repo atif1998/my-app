@@ -1,17 +1,20 @@
 import { Detail } from "@/components/Detail";
+import { DialogDemo } from "@/components/Dialog";
 import Register from "@/components/Form";
 import { Login } from "@/components/Login";
+import { Navbar } from "@/components/Navbar";
 import { DataTableDemo } from "@/components/TableComponent";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
+    <div dir="ltr">
       <Login />
-      <Detail />
+      <Navbar />
       <DataTableDemo />
       <Register />
+      <DialogDemo />
       <div
         style={{
           width: 350,
