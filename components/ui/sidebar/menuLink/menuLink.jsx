@@ -5,6 +5,7 @@ import styles from "./menuLink.module.css";
 import { usePathname } from "next/navigation";
 
 const MenuLink = ({ item }) => {
+  console.log(item);
   const pathname = usePathname();
 
   return (
@@ -15,7 +16,17 @@ const MenuLink = ({ item }) => {
       }`}
     >
       {item.icon}
-      {item.title}
+      <p
+        style={{
+          fontFamily: "'Montserrat', sans-serif",
+          fontSize: "12px",
+          fontWeight: 500,
+          color: "white",
+          lineHeight: "30px",
+        }}
+      >
+        {item.title}
+      </p>
     </Link>
   );
 };

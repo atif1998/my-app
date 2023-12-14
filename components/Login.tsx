@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { FaMicrosoft } from "react-icons/fa";
 import Link from "next/link";
+import Microsoft from "@/app/assests/svgs/Microsoft";
 
 export const Login = () => {
   const handleClick = () => {
@@ -67,15 +68,15 @@ export const Login = () => {
               height: 48,
               margin: "0 20px",
               backgroundColor: "white",
-
               marginBottom: 20,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               gap: "10px",
+              borderRadius: "8px",
             }}
           >
-            <FaMicrosoft size={16} color="#0078D4" />
+            <Microsoft />
             <p
               style={{
                 fontFamily: "Montserrat, sans-serif",
@@ -101,6 +102,7 @@ export const Login = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "10px",
+                borderRadius: "8px",
               }}
             >
               <FcGoogle size={20} />
@@ -126,7 +128,7 @@ export const Login = () => {
               margin: "0 20px",
               backgroundColor: "white",
               marginBottom: 20,
-              borderRadius: "5px",
+              borderRadius: "8px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -153,6 +155,7 @@ export const Login = () => {
               height: 48,
               backgroundColor: "#1D374E",
               marginBottom: 20,
+              borderRadius: "8px",
             }}
           >
             <p
@@ -174,6 +177,7 @@ export const Login = () => {
               backgroundColor: "#1D374E",
               marginBottom: 20,
               height: 48,
+              borderRadius: "8px",
             }}
           >
             <p
