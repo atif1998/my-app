@@ -89,7 +89,7 @@ const Sidebar = () => {
         </div>
         <p
           style={{
-            fontFamily: "Montserrat, sans-serif",
+            fontFamily: "Montserrat",
             fontSize: "14px",
             fontWeight: "bold",
             color: "white",

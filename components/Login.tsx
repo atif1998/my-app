@@ -6,6 +6,9 @@ import { FaApple } from "react-icons/fa";
 import { FaMicrosoft } from "react-icons/fa";
 import Link from "next/link";
 import Microsoft from "@/app/assests/svgs/Microsoft";
+import Check from "@/app/assests/svgs/Check";
+import logo from "@/app/assests/images/Icon.png";
+import Logo from "@/app/assests/svgs/Logo";
 
 export const Login = () => {
   const handleClick = () => {
@@ -40,18 +43,19 @@ export const Login = () => {
           style={{
             textAlign: "center",
             position: "absolute",
-            top: "-75px",
+            top: "-56px",
             display: "flex",
-            justifyContent: "center",
           }}
         >
-          <img
+          <Image
             style={{
-              width: "35%",
+              width: "112px",
+              height: "112px",
+              border: "10px solid  #F9F9FD",
+              backgroundColor: "white",
               borderRadius: "50%",
-              border: "15px solid  #F9F9FD",
             }}
-            src="https://img.freepik.com/free-vector/golden-bird-logo-design_1195-336.jpg"
+            src={logo}
             alt=""
           />
         </div>
@@ -79,7 +83,8 @@ export const Login = () => {
             <Microsoft />
             <p
               style={{
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Montserrat",
+                fontWeight: "500",
                 fontSize: "12px",
                 margin: 0,
                 color: "#2C2C2C",
@@ -108,9 +113,10 @@ export const Login = () => {
               <FcGoogle size={20} />
               <p
                 style={{
-                  fontFamily: "Montserrat, sans-serif",
+                  fontFamily: "Montserrat",
+                  fontWeight: "500",
                   fontSize: "12px",
-                  margin: 0,
+
                   color: "#2C2C2C",
                   lineHeight: "15px",
                 }}
@@ -138,7 +144,8 @@ export const Login = () => {
             <FaApple color="#000000" size={20} />
             <p
               style={{
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Montserrat",
+                fontWeight: "500",
                 fontSize: "12px",
                 margin: 0,
                 color: "#2C2C2C",
@@ -160,8 +167,10 @@ export const Login = () => {
           >
             <p
               style={{
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Montserrat",
+                fontWeight: "500",
                 fontSize: "12px",
+                lineHeight: "15px",
                 margin: 0,
                 color: "#ffffff",
               }}
@@ -182,8 +191,10 @@ export const Login = () => {
           >
             <p
               style={{
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Montserrat",
+                fontWeight: "500",
                 fontSize: "12px",
+                lineHeight: "15px",
                 margin: 0,
                 color: "#ffffff",
               }}
@@ -195,12 +206,34 @@ export const Login = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              padding: "20px",
+              gap: "5px",
             }}
           >
-            <input type="checkbox" />
-            <p>I have read & agree to the </p>
-            <p>Terms of use</p>
+            <Check />
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontWeight: "500",
+                fontSize: "12px",
+                color: "#19151C",
+                lineHeight: "15px",
+              }}
+            >
+              I have read & agree to the
+            </p>
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontWeight: "600",
+                fontSize: "12px",
+                color: "#1D374E",
+                lineHeight: "15px",
+                textDecoration: "underline",
+              }}
+            >
+              Terms of use
+            </p>
           </div>
         </div>
       </div>

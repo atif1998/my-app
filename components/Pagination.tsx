@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { ButtonIcon } from "./ButtonIcon";
 
 export default function PaginationDemo() {
   return (
@@ -34,13 +35,7 @@ export default function PaginationDemo() {
         >
           3
         </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          style={{ backgroundColor: "#F1F2F6" }}
-        >
-          <IoIosArrowForward />
-        </Button>
+        <ButtonIcon />
       </div>
     </>
   );

@@ -9,6 +9,9 @@ import Sidebar from "./ui/sidebar/sidebar";
 import Notification from "@/app/assests/svgs/Notification";
 import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
+import { Button } from "./ui/button";
+import Add from "@/app/assests/svgs/Add";
+import { TabsDemo } from "./TabsComponent";
 
 export const Detail = () => {
   return (
@@ -41,12 +44,12 @@ export const Detail = () => {
           <div
             style={{ display: "flex", padding: "20px", alignItems: "center" }}
           >
-            {/* <Navbar /> */}
+            <Navbar />
             <p
               style={{
                 padding: "20px",
                 borderRight: "1px solid #EDEDED",
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Montserrat",
                 fontSize: "20px",
                 fontWeight: "medium",
                 color: "#19151C",
@@ -58,7 +61,7 @@ export const Detail = () => {
             <p
               style={{
                 padding: "20px",
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Montserrat",
                 fontSize: "14px",
                 fontWeight: "medium",
                 color: "#8B909A",
@@ -96,7 +99,34 @@ export const Detail = () => {
             </div>
           </div>
         </div>
-        <DataTableDemo />
+        {/* <Button
+          style={{
+            backgroundColor: "#1D374E",
+            color: "white",
+            width: "146px",
+            height: "44px",
+            borderRadius: "6px",
+            // padding: "11px 14px 11px 14px",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <Add />
+          <p
+            style={{
+              fontFamily: "Montserrat",
+              fontSize: "12px",
+              fontWeight: "500",
+              color: "#FFFFFF",
+              lineHeight: "15px",
+            }}
+          >
+            Add New User
+          </p>
+        </Button> */}
+        <TabsDemo />
+
+        {/* <DataTableDemo /> */}
       </div>
     </div>
   );

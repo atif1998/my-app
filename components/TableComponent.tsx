@@ -353,7 +353,7 @@ export function DataTableDemo() {
   });
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 ">
       <div className="flex items-center py-4 gap-5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

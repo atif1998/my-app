@@ -4,6 +4,7 @@ import Register from "@/components/Form";
 import { Login } from "@/components/Login";
 import { Navbar } from "@/components/Navbar";
 import { DataTableDemo } from "@/components/TableComponent";
+import { TabsDemo } from "@/components/TabsComponent";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <DataTableDemo />
       <Register />
       <DialogDemo />
+      <TabsDemo />
       <div
         style={{
           width: 350,
