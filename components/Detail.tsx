@@ -12,6 +12,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Button } from "./ui/button";
 import Add from "@/app/assests/svgs/Add";
 import { TabsDemo } from "./TabsComponent";
+import Navigation from "./Navigation";
 
 export const Detail = () => {
   return (
@@ -30,7 +31,7 @@ export const Detail = () => {
       >
         <Sidebar />
       </div>
-      <div style={{ width: "84%" }}>
+      <div style={{ width: "84%", height: "calc(100vh - 9rem)" }}>
         <div
           style={{
             width: "100%",
@@ -42,9 +43,13 @@ export const Detail = () => {
           }}
         >
           <div
-            style={{ display: "flex", padding: "20px", alignItems: "center" }}
+            style={{
+              display: "flex",
+              padding: "20px",
+              alignItems: "center",
+            }}
           >
-            <Navbar />
+            {/* <Navbar /> */}
             <p
               style={{
                 padding: "20px",

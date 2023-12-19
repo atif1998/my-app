@@ -16,6 +16,7 @@ import {
 import { TiEye } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import { IoIosArrowDown } from "react-icons/io";
 import {
   ArrowUpDown,
   ChevronDown,
@@ -45,6 +46,7 @@ import {
 } from "@/components/ui/table";
 import { Switch } from "./ui/switch";
 import PaginationDemo from "./Pagination";
+import { Sort } from "@/app/assests/svgs/Sort";
 
 const data: Payment[] = [
   {
@@ -356,6 +358,21 @@ export function DataTableDemo() {
     <div className="w-full p-4 ">
       <div className="flex items-center py-4 gap-5">
         <DropdownMenu>
+          <div className="flex items-center gap-2 h-15">
+            <Sort />
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontWeight: "500",
+                fontSize: "12px",
+                color: "#19151C",
+                lineHeight: "15px",
+              }}
+            >
+              Sort by name
+            </p>
+            <IoIosArrowDown />
+          </div>
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
@@ -466,7 +483,7 @@ export function DataTableDemo() {
           >
             Next
           </Button> */}
-          <PaginationDemo />
+          {/* <PaginationDemo /> */}
         </div>
       </div>
     </div>

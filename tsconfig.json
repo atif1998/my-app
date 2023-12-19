@@ -27,7 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/ui/sidebar/menuLink/menuLink.jsx"
+    "components/ui/sidebar/menuLink/menuLink.jsx",
+    "app/phone/layout.jsx",
+    "app/email/layout.jsx"
   ],
   "exclude": ["node_modules"]
 }

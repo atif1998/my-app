@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div dir="ltr">
       <Login />
-      <Navbar />
+      {/* <Navbar />
       <DataTableDemo />
       <Register />
       <DialogDemo />
@@ -82,7 +82,7 @@ export default function Home() {
         >
           Login with phone
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }
