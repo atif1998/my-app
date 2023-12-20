@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div dir="ltr">
+    <div>
       <Login />
       {/* <Navbar />
       <DataTableDemo />

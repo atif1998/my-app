@@ -20,26 +20,10 @@ export const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-tl from-[#081623] to-[#355572]">
       <div
-        style={{
-          border: "1px solid",
-          height: 560,
-          width: 375,
-          position: "relative",
-          borderRadius: "20px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#F9F9FD",
-        }}
+        className="flex items-center justify-center bg-[#F9F9FD] relative  w-[375px] h-[560px] border border-solid border-gray-300 "
+        style={{ borderRadius: "20px" }}
       >
-        <div
-          style={{
-            textAlign: "center",
-            position: "absolute",
-            top: "-56px",
-            display: "flex",
-          }}
-        >
+        <div className="text-center absolute -top-14 flex">
           <Image
             style={{
               width: "112px",
@@ -205,20 +189,27 @@ export const Login = () => {
             >
               I have read & agree to the
             </p>
-            <p
-              onClick={() => alert("I have read & agree to the")}
-              style={{
-                fontFamily: "Montserrat",
-                fontWeight: "600",
-                fontSize: "12px",
-                color: "#1D374E",
-                lineHeight: "15px",
-                textDecoration: "underline",
-                cursor: "pointer",
+            <Link
+              href={{
+                pathname: "/terms",
+                query: { origin: "/" },
               }}
+              passHref={true}
             >
-              Terms of use
-            </p>
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "600",
+                  fontSize: "12px",
+                  color: "#1D374E",
+                  lineHeight: "15px",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Terms of use
+              </p>
+            </Link>
           </div>
         </div>
       </div>

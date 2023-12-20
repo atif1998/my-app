@@ -40,7 +40,7 @@ const OtpPage: React.FC = () => {
       <div
         style={{
           border: "1px solid",
-          height: 450,
+          height: 400,
           width: 375,
           position: "relative",
           borderRadius: "20px",
@@ -92,9 +92,11 @@ const OtpPage: React.FC = () => {
           </div>
           <div>
             <form className="w-[280px] flex justify-between items-centen mb-10 m-10  text-center ">
-              {otp.map((_, i) => (
+              {otp.map((number, i) => (
                 <Input
                   key={i}
+                  type="text"
+                  value={number}
                   className="w-[45px] h-[45px] flex items-center text-center"
                   maxLength={1}
                   onChange={(e) => handleOTPChange(e, i)}
