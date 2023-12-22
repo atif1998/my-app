@@ -129,6 +129,70 @@ export const Detail = () => {
             Add New User
           </p>
         </Button> */}
+        <div className="flex items-center justify-between p-5 gap-5">
+          <p
+            style={{
+              fontFamily: "Montserrat",
+              fontWeight: "500",
+              fontSize: "20px",
+              lineHeight: "25px",
+              color: "#19151C",
+            }}
+          >
+            Users
+          </p>
+          <div className="flex gap-4">
+            <Button
+              style={{
+                backgroundColor: "#1D374E",
+                color: "white",
+                width: "146px",
+                height: "44px",
+                borderRadius: "6px",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <Add />
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  color: "#FFFFFF",
+                  lineHeight: "15px",
+                }}
+              >
+                Add New User
+              </p>
+            </Button>
+            <Button
+              style={{
+                backgroundColor: "#1D374E",
+                color: "white",
+                width: "146px",
+                height: "44px",
+                borderRadius: "6px",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <Add />
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  color: "#FFFFFF",
+                  lineHeight: "15px",
+                }}
+              >
+                Add Bulk users
+              </p>
+            </Button>
+          </div>
+        </div>
+
         <TabsDemo />
 
         {/* <DataTableDemo /> */}

@@ -1,12 +1,29 @@
 "use client";
 import Image from "next/image";
-import React, { useRef, useState, ChangeEvent } from "react";
+import React, { useRef, useState, ChangeEvent, useEffect } from "react";
 import logo from "@/app/assests/images/Icon.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const OtpPage: React.FC = () => {
   const [otp, setOTP] = useState(["", "", "", ""]);
+  const [timer, setTimer] = useState(60);
+  const [otpFilled, setOtpFilled] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer > 0) {
+        setTimer(timer - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer]);
+
+  const handleResend = () => {
+    setTimer(30);
+    setOtpFilled(false);
+  };
 
   const inputRefs = useRef([
     React.createRef<HTMLInputElement>(),
@@ -27,12 +44,19 @@ const OtpPage: React.FC = () => {
         inputRefs.current[index + 1].current?.focus();
       }
     }
+    const isOtpFilled = newOTP.every((digit) => /\d/.test(digit));
+    setOtpFilled(isOtpFilled);
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const otpValue = otp.join("");
-    console.log(otpValue);
+
+    if (otpFilled) {
+      const otpValue = otp.join("");
+      console.log(otpValue);
+    } else {
+      alert("Please fill in the OTP");
+    }
   };
 
   return (
@@ -40,7 +64,7 @@ const OtpPage: React.FC = () => {
       <div
         style={{
           border: "1px solid",
-          height: 400,
+          height: 450,
           width: 375,
           position: "relative",
           borderRadius: "20px",
@@ -73,6 +97,9 @@ const OtpPage: React.FC = () => {
         <div
           style={{
             width: 350,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
           <div className="flex w-full items-center justify-center p-5 ">
@@ -97,15 +124,16 @@ const OtpPage: React.FC = () => {
                   key={i}
                   type="text"
                   value={number}
-                  className="w-[45px] h-[45px] flex items-center text-center"
+                  className="w-[45px] h-[45px] flex items-center text-center border-blue-900"
                   maxLength={1}
                   onChange={(e) => handleOTPChange(e, i)}
                   ref={inputRefs.current[i]}
+                  required
                 />
               ))}
             </form>
           </div>
-          <div className="mb-4">
+          <div className=" flex flex-col justify-between">
             <Button
               onClick={handleSubmit}
               style={{
@@ -129,6 +157,22 @@ const OtpPage: React.FC = () => {
                 Submit
               </p>
             </Button>
+            {timer === 0 && (
+              <p className="text-color-[#000000] text-sm  flex justify-center gap-3">
+                Resend OTP
+                <span
+                  className="text-blue-500 cursor-pointer  flex justify-center"
+                  onClick={handleResend}
+                >
+                  click here
+                </span>
+              </p>
+            )}
+            {timer > 0 && (
+              <p className="text-color-[#000000] text-sm flex justify-center ">
+                Resend OTP in {timer} seconds
+              </p>
+            )}
           </div>
         </div>
       </div>

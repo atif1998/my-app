@@ -1,5 +1,6 @@
 import { Detail } from "@/components/Detail";
 import { DialogDemo } from "@/components/Dialog";
+import DialogDemoRemove from "@/components/DialogRemove";
 import Register from "@/components/Form";
 import { Login } from "@/components/Login";
 import { Navbar } from "@/components/Navbar";
@@ -12,10 +13,12 @@ export default function Home() {
   return (
     <div>
       <Login />
+      <DialogDemo />
+      <DialogDemoRemove />
       {/* <Navbar />
       <DataTableDemo />
       <Register />
-      <DialogDemo />
+
       <TabsDemo />
       <div
         style={{

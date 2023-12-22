@@ -61,6 +61,9 @@ const TableRow = React.forwardRef<
       "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
       className
     )}
+    style={{
+      fontFamily: "Montserrat",
+    }}
     {...props}
   />
 ));
@@ -89,6 +92,9 @@ const TableCell = React.forwardRef<
     ref={ref}
     className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
     {...props}
+    style={{
+      fontFamily: "Montserrat",
+    }}
   />
 ));
 TableCell.displayName = "TableCell";

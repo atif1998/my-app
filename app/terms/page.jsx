@@ -7,7 +7,11 @@ export default function TermsPage() {
       <div
         style={{
           width: "16%",
+          display: "flex",
           background: "linear-gradient(to top left, #081623, #355572)",
+          flexDirection: "column", // Adjust the direction to column
+          height: "100%", // Make the gradient cover the entire height
+          overflow: "auto", // Enable scrolling for the gradient
         }}
       ></div>
       <div style={{ width: "84%", height: "100vh" }}>
@@ -39,8 +43,7 @@ export default function TermsPage() {
                   fontSize: "20px",
                   lineHeight: "25px",
                   color: "#19151C",
-                  marginTop: "10px",
-                  marginBottom: "5px",
+                  marginTop: "5px",
                 }}
               >
                 Terms of use

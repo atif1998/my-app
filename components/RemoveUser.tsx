@@ -127,58 +127,6 @@ const data: Payment[] = [
     amount: 721,
     email: "carmella@hotmail.com",
   },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
 ];
 
 export type Payment = {
@@ -300,7 +248,6 @@ export const columns: ColumnDef<Payment>[] = [
             }}
           >
             <DropdownMenuLabel
-              onClick={() => handleViewUserInfo(row)}
               style={{
                 display: "flex",
                 justifyContent: "flex-start",
@@ -378,12 +325,8 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
 ];
-const handleViewUserInfo = (row: any) => {
-  // Replace this with your actual logic to view user info
-  console.log("Viewing user info:", row.original);
-};
 
-export function DataTableDemo() {
+export function DataTableDemoRemove() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -413,7 +356,7 @@ export function DataTableDemo() {
 
   return (
     <div className="w-full p-4 ">
-      <div className="flex items-center py-4 gap-5">
+      <div className="flex items-center py-4 gap-5 justify-between">
         <DropdownMenu>
           <div className="flex items-center gap-2 h-15">
             <Sort />
@@ -430,15 +373,7 @@ export function DataTableDemo() {
             </p>
             <IoIosArrowDown />
           </div>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="ml-auto"
-              style={{ border: "1px solid #1D374E" }}
-            >
-              Apply Filter <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
+
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
