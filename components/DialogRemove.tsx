@@ -20,7 +20,7 @@ export default function DialogDemoRemove() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <p>Remove User</p>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[400px] h-[170px] flex flex-col gap-7">
         <DialogHeader className="flex flex-col gap-2">

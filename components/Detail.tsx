@@ -49,7 +49,7 @@ export const Detail = () => {
               alignItems: "center",
             }}
           >
-            {/* <Navbar /> */}
+            <Navbar />
             <p
               style={{
                 padding: "20px",

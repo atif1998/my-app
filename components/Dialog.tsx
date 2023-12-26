@@ -20,7 +20,7 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <p>View User info</p>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[490px]">
         <DialogHeader>

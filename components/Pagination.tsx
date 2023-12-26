@@ -1,42 +1,56 @@
-import { Button } from "@/components/ui/button";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import { ButtonIcon } from "./ButtonIcon";
+"use client";
 
-export default function PaginationDemo() {
+import React, { useState } from "react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+export function PaginationDemo() {
+  const [activePage, setActivePage] = useState(1);
+
+  const handleNextClick = () => {
+    setActivePage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousClick = () => {
+    if (activePage > 1) {
+      setActivePage((prevPage) => prevPage - 1);
+    }
+  };
+
   return (
-    <>
-      <div>
-        <Button
-          variant="outline"
-          size="sm"
-          style={{ backgroundColor: "#F1F2F6" }}
-        >
-          <IoIosArrowBack />
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          style={{ backgroundColor: "#F1F2F6" }}
-        >
-          1
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          style={{ backgroundColor: "#F1F2F6" }}
-        >
-          2
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          style={{ backgroundColor: "#F1F2F6" }}
-        >
-          3
-        </Button>
-        <ButtonIcon />
-      </div>
-    </>
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" onClick={handlePreviousClick} />
+        </PaginationItem>
+
+        {[1, 2, 3].map((pageNumber) => (
+          <PaginationItem key={pageNumber}>
+            <PaginationLink
+              href="#"
+              isActive={pageNumber === activePage}
+              onClick={() => setActivePage(pageNumber)}
+            >
+              {pageNumber}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+
+        {/* <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem> */}
+
+        <PaginationItem>
+          <PaginationNext href="#" onClick={handleNextClick} />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 }

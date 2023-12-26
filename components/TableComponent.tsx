@@ -14,6 +14,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { TiEye } from "react-icons/ti";
+import { Mail } from "lucide-react";
+
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
@@ -45,141 +47,66 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Switch } from "./ui/switch";
-import PaginationDemo from "./Pagination";
-import { Sort } from "@/app/assests/svgs/Sort";
 
-const data: Payment[] = [
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "3u1reuv4",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 242,
-    email: "Abe45@gmail.com",
-  },
-  {
-    id: "derv1ws0",
-    name: "Zahoor",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 837,
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    name: "ASIM",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 874,
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    name: "JAWAD",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 721,
-    email: "carmella@hotmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    name: "JAWAD",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 721,
-    email: "carmella@hotmail.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "m5gr84i9",
-    name: "ATIF",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 316,
-    email: "ken99@yahoo.com",
-  },
-];
+import { Sort } from "@/app/assests/svgs/Sort";
+import { DialogDemo } from "./Dialog";
+import DialogDemoRemove from "./DialogRemove";
+
+const userTemplate = {
+  id: "m5gr84i9",
+  name: "ATIF",
+  userName: "atif@gmail.com",
+  Initialpasswprd: "123456789",
+  blockSignIn: "No",
+  Firstname: "john",
+  Lastname: "doe",
+  jobTitle: "software",
+  department: "Urology",
+  UsageLocation: "newyork",
+  Country: "United States",
+  office: "officename",
+  city: "New York",
+  Zipcode: "12345",
+  phone: 123456789,
+  officePhone: "123456789",
+  facility: " Care Medical",
+  Signin: "enabled",
+};
+
+const generateUsers = (count: number) => {
+  const users = [];
+
+  for (let i = 0; i < count; i++) {
+    // Use spread operator to create a shallow copy of the template
+    const newUser = { ...userTemplate };
+
+    // Modify properties if needed
+
+    // Add the new user to the array
+    users.push(newUser);
+  }
+
+  return users;
+};
+
+// Example: Generate 100 users
+const numberOfUsers = 100;
+const users = generateUsers(numberOfUsers);
+
+console.log(users);
+const data: Payment[] = users.map((user) => ({
+  id: user.id,
+  name: user.name,
+  userName: user.userName,
+  city: user.city,
+  phone: user.phone,
+  jobTitle: user.jobTitle,
+  department: user.department,
+  amount: 0, // You may need to adjust this property based on your data
+  facility: user.facility,
+  blockSignIn: user.blockSignIn,
+  email: user.userName, // You may need to adjust this property based on your data
+}));
 
 export type Payment = {
   id: string;
@@ -307,10 +234,11 @@ export const columns: ColumnDef<Payment>[] = [
                 alignItems: "center",
                 gap: "15px",
                 height: "47px",
+                cursor: "pointer",
               }}
             >
               <TiEye />
-              View User info
+              <DialogDemo />
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuLabel
@@ -336,7 +264,7 @@ export const columns: ColumnDef<Payment>[] = [
               }}
             >
               <MdDelete />
-              Remove User
+              <DialogDemoRemove />
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuLabel
@@ -388,9 +316,14 @@ export function DataTableDemo() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const [showFilters, setShowFilters] = React.useState(false);
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
+  const handleClick = () => {
+    setShowFilters((prev) => !prev);
+  };
 
   const table = useReactTable({
     data,
@@ -435,11 +368,12 @@ export function DataTableDemo() {
               variant="outline"
               className="ml-auto"
               style={{ border: "1px solid #1D374E" }}
+              onClick={handleClick}
             >
               Apply Filter <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          {/* <DropdownMenuContent align="end">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -457,7 +391,7 @@ export function DataTableDemo() {
                   </DropdownMenuCheckboxItem>
                 );
               })}
-          </DropdownMenuContent>
+          </DropdownMenuContent> */}
         </DropdownMenu>
         <Input
           placeholder="Search by name or title"
@@ -468,6 +402,134 @@ export function DataTableDemo() {
           className="max-w-sm"
         />
       </div>
+      {showFilters && (
+        <div className="p-1  w-full  h-[200px] flex flex-col gap-4 ">
+          <div className=" flex  gap-4">
+            <div className="relative flex flex-row items-center justify-center ">
+              <div className="flex flex-col ">
+                <label>Department/Speciality</label>
+                <Input
+                  className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                  placeholder="select"
+                />
+              </div>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                <ChevronDown size={15} className="dark:text-black" />
+              </div>
+            </div>
+            <div>
+              <div className="relative flex items-center justify-center ">
+                <div className="flex flex-col">
+                  <label>Title</label>
+                  <Input
+                    className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                    placeholder="select"
+                  />
+                </div>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                  <ChevronDown size={15} className="dark:text-black" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="relative flex flex-row items-center justify-center ">
+                <div className="flex flex-col ">
+                  <label>Language</label>
+                  <Input
+                    className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                    placeholder="select"
+                  />
+                </div>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                  <ChevronDown size={15} className="dark:text-black" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="relative flex flex-row items-center justify-center ">
+                <div className="flex flex-col ">
+                  <label>Distance</label>
+                  <Input
+                    className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                    placeholder="select"
+                  />
+                </div>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                  <ChevronDown size={15} className="dark:text-black" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="relative flex flex-row items-center justify-center ">
+                <div className="flex flex-col items-center ">
+                  <label>Additional filter</label>
+                  <Input
+                    className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                    placeholder="select"
+                  />
+                </div>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                  <ChevronDown size={15} className="dark:text-black" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className=" flex gap-4 ">
+            <div>
+              <div className="relative flex items-center justify-center ">
+                <Input
+                  className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                  placeholder="select"
+                />
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                  <ChevronDown size={15} className="dark:text-black" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="relative flex items-center justify-center ">
+                <Input
+                  className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                  placeholder="select"
+                />
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
+                  <ChevronDown size={15} className="dark:text-black" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex gap-2  items-center">
+              <Checkbox className="rounded-full" />
+              <p>Only Show favourites </p>
+              <Checkbox className=" rounded-full" />
+              <p>Register Users</p>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                onClick={handleClick}
+                style={{
+                  border: "1px solid #1D374E",
+                  background: "white",
+                  color: "#1D374E",
+                  width: "120px",
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                style={{
+                  border: "1px solid #1D374E",
+                  background: "#1D374E",
+                  width: "120px",
+                }}
+              >
+                Apply
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -517,31 +579,6 @@ export function DataTableDemo() {
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        {/* <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div> */}
-        <div className="space-x-2">
-          {/* <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button> */}
-          {/* <PaginationDemo /> */}
-        </div>
       </div>
     </div>
   );

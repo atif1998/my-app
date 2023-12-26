@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DataTableDemo } from "./TableComponent";
 import Register from "./Form";
 import { DataTableDemoRemove } from "./RemoveUser";
+import { PaginationDemo } from "./Pagination";
 
 export function TabsDemo() {
   return (
@@ -25,6 +26,7 @@ export function TabsDemo() {
       </TabsList>
       <TabsContent value="user">
         <DataTableDemo />
+        <PaginationDemo />
       </TabsContent>
       <TabsContent value="removed">
         <DataTableDemoRemove />

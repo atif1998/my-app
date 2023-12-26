@@ -13,8 +13,7 @@ export default function Home() {
   return (
     <div>
       <Login />
-      <DialogDemo />
-      <DialogDemoRemove />
+
       {/* <Navbar />
       <DataTableDemo />
       <Register />
