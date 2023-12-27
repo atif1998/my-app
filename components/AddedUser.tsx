@@ -47,9 +47,6 @@ import {
 import { Switch } from "./ui/switch";
 
 import { Sort } from "@/app/assests/svgs/Sort";
-import { Dialog } from "./ui/dialog";
-import { DialogDemo } from "./Dialog";
-import DialogDemoRemove from "./DialogRemove";
 
 const data: Payment[] = [
   {
@@ -103,58 +100,6 @@ const data: Payment[] = [
     blockSignIn: "No",
     amount: 874,
     email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    name: "JAWAD",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 721,
-    email: "carmella@hotmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    name: "JAWAD",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 721,
-    email: "carmella@hotmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    name: "JAWAD",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 721,
-    email: "carmella@hotmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    name: "JAWAD",
-    userName: "atif@gmail.com",
-    city: "New York",
-    phone: 123456789,
-    jobTitle: "software",
-    department: "Urology",
-    facility: " Care Medical",
-    blockSignIn: "No",
-    amount: 721,
-    email: "carmella@hotmail.com",
   },
   {
     id: "bhqecj4p",
@@ -283,13 +228,15 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     enableHiding: false,
+
     header: "Actions",
     cell: ({ row }) => {
+      const payment = row.original;
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <div className="flex items-center justify-center">
-              <Button className="h-[28px] w-[68px]">Rollback</Button>
+            <div className=" flex items-center justify-center">
               <MoreVertical className="h-4 w-4" />
             </div>
           </DropdownMenuTrigger>
@@ -311,7 +258,7 @@ export const columns: ColumnDef<Payment>[] = [
               }}
             >
               <TiEye />
-              <DialogDemo />
+              View User info
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuLabel
@@ -337,7 +284,7 @@ export const columns: ColumnDef<Payment>[] = [
               }}
             >
               <MdDelete />
-              <DialogDemoRemove />
+              Remove User
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuLabel
@@ -380,7 +327,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export function DataTableDemoRemove() {
+export function DataTableDemoAdded() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -507,13 +454,13 @@ export function DataTableDemoRemove() {
           </TableBody>
         </Table>
       </div>
-      {/* <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
+      <div className="flex items-center justify-end space-x-2 py-4">
+        {/* <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
+        </div> */}
         <div className="space-x-2">
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
@@ -528,9 +475,10 @@ export function DataTableDemoRemove() {
             disabled={!table.getCanNextPage()}
           >
             Next
-          </Button>
+          </Button> */}
+          {/* <PaginationDemo /> */}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

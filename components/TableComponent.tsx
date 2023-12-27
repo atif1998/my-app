@@ -51,6 +51,8 @@ import { Switch } from "./ui/switch";
 import { Sort } from "@/app/assests/svgs/Sort";
 import { DialogDemo } from "./Dialog";
 import DialogDemoRemove from "./DialogRemove";
+import { PaginationDemo } from "./Pagination";
+import { number } from "zod";
 
 const userTemplate = {
   id: "m5gr84i9",
@@ -94,7 +96,7 @@ const numberOfUsers = 100;
 const users = generateUsers(numberOfUsers);
 
 console.log(users);
-const data: Payment[] = users.map((user) => ({
+const data: User[] = users.map((user) => ({
   id: user.id,
   name: user.name,
   userName: user.userName,
@@ -108,7 +110,7 @@ const data: Payment[] = users.map((user) => ({
   email: user.userName, // You may need to adjust this property based on your data
 }));
 
-export type Payment = {
+export type User = {
   id: string;
   name: string;
   userName: String;
@@ -122,7 +124,7 @@ export type Payment = {
   email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<User>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -207,6 +209,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     enableHiding: false,
+    header: "Actions",
     cell: ({ row }) => {
       const payment = row.original;
 
@@ -373,25 +376,6 @@ export function DataTableDemo() {
               Apply Filter <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          {/* <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent> */}
         </DropdownMenu>
         <Input
           placeholder="Search by name or title"
@@ -579,6 +563,7 @@ export function DataTableDemo() {
             )}
           </TableBody>
         </Table>
+        <PaginationDemo totalItems={data.length} />
       </div>
     </div>
   );

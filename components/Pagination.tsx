@@ -11,10 +11,19 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export function PaginationDemo() {
+interface PaginationDemoProps {
+  totalItems: number;
+}
+
+export const PaginationDemo: React.FC<PaginationDemoProps> = ({
+  totalItems,
+}) => {
   const [activePage, setActivePage] = useState(1);
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const handleNextClick = () => {
+    console.log(totalItems);
+
     setActivePage((prevPage) => prevPage + 1);
   };
 
@@ -31,10 +40,10 @@ export function PaginationDemo() {
           <PaginationPrevious href="#" onClick={handlePreviousClick} />
         </PaginationItem>
 
-        {[1, 2, 3].map((pageNumber) => (
+        {arr.map((pageNumber) => (
           <PaginationItem key={pageNumber}>
             <PaginationLink
-              href="#"
+              href="#${activePage}"
               isActive={pageNumber === activePage}
               onClick={() => setActivePage(pageNumber)}
             >
@@ -53,4 +62,4 @@ export function PaginationDemo() {
       </PaginationContent>
     </Pagination>
   );
-}
+};
