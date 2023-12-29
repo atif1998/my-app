@@ -50,6 +50,15 @@ export const resetValidationSchema = z.object({
   postalCode: z
     .string()
     .min(4, { message: "postalcode must be at least 4 characters" }),
+  officePhone: z.string().min(9, {
+    message: "officephone must be at least 9 characters",
+  }),
+  mobilePhone: z.string().min(9, {
+    message: "officephone must be at least 9 characters",
+  }),
+  password: z.string().min(4, {
+    message: "password must be at least 4 characters",
+  }),
 });
 
 export type resetValidationSchema = z.infer<typeof resetValidationSchema>;

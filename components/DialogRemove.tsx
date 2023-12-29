@@ -26,7 +26,18 @@ export default function DialogDemoRemove() {
         <DialogHeader className="flex flex-col gap-2">
           <DialogTitle className="w-full flex justify-center">
             {" "}
-            Remove User
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontSize: "14px",
+                fontWeight: "bold",
+                lineHeight: "21px",
+                color: "#1D1617",
+              }}
+            >
+              {" "}
+              Remove User
+            </p>
           </DialogTitle>
           <DialogDescription
             style={{
@@ -74,6 +85,7 @@ export default function DialogDemoRemove() {
                 backgroundColor: "white",
                 color: "red",
                 border: "1px solid red",
+                borderRadius: "8px",
               }}
             >
               Cancel
@@ -88,6 +100,7 @@ export default function DialogDemoRemove() {
               backgroundColor: "white",
               color: "#1D374E",
               border: "1px solid #1D374E",
+              borderRadius: "8px",
             }}
           >
             Remove

@@ -21,7 +21,9 @@ export function TabsDemo() {
   return (
     <Tabs defaultValue="account" className="w-full  ">
       <TabsList className="w-full  flex space-between">
-        <TabsTrigger value="user">Users</TabsTrigger>
+        <TabsTrigger className="active:underline " value="user">
+          Users
+        </TabsTrigger>
         <TabsTrigger value="removed">Recently Removed</TabsTrigger>
         <TabsTrigger value="add">Recently Added</TabsTrigger>
         <TabsTrigger value="updated">Recently updated</TabsTrigger>

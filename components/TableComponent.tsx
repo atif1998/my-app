@@ -13,6 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { Search } from "lucide-react";
 import { TiEye } from "react-icons/ti";
 import { Mail } from "lucide-react";
 
@@ -53,6 +54,7 @@ import { DialogDemo } from "./Dialog";
 import DialogDemoRemove from "./DialogRemove";
 import { PaginationDemo } from "./Pagination";
 import { number } from "zod";
+import { Filter } from "@/app/assests/svgs/Filter";
 
 const userTemplate = {
   id: "m5gr84i9",
@@ -370,24 +372,48 @@ export function DataTableDemo() {
             <Button
               variant="outline"
               className="ml-auto"
-              style={{ border: "1px solid #1D374E" }}
+              style={{
+                height: "40px",
+                border: "1px solid #1D374E",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                alignContent: "center",
+                gap: "2px",
+              }}
               onClick={handleClick}
             >
-              Apply Filter <ChevronDown className="ml-2 h-4 w-4" />
+              <Filter />
+              <p className="ml-2">Apply Filter</p>
+              <ChevronDown className=" h-8 w-4" />
             </Button>
           </DropdownMenuTrigger>
         </DropdownMenu>
+
+        {/* <div className="relative  flex items-center justify-center flex-row gap-2 ">
+          <div className="absolute left-2 top-1/2 -translate-y-1/2 transform cursor-pointer">
+            <Search size={15} />
+          </div>
+          <Input
+            placeholder="Search by name or title"
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
+            className="w-[200px]  h-[40px]"
+          />
+        </div> */}
         <Input
           placeholder="Search by name or title"
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="w-[200px] h-[40px]"
         />
       </div>
       {showFilters && (
-        <div className="p-1  w-full  h-[200px] flex flex-col gap-4 ">
+        <div className="p-1  w-full  h-[220px] flex flex-col gap-4 ">
           <div className=" flex  gap-4">
             <div className="relative flex flex-row items-center justify-center ">
               <div className="flex flex-col ">
@@ -445,7 +471,7 @@ export function DataTableDemo() {
             </div>
             <div>
               <div className="relative flex flex-row items-center justify-center ">
-                <div className="flex flex-col items-center ">
+                <div className="flex flex-col ">
                   <label>Additional filter</label>
                   <Input
                     className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
@@ -460,22 +486,28 @@ export function DataTableDemo() {
           </div>
           <div className=" flex gap-4 ">
             <div>
-              <div className="relative flex items-center justify-center ">
-                <Input
-                  className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
-                  placeholder="select"
-                />
+              <div className="relative flex flex-row items-center justify-center ">
+                <div className="flex flex-col  ">
+                  <label>Additional filter</label>
+                  <Input
+                    className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                    placeholder="select"
+                  />
+                </div>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
                   <ChevronDown size={15} className="dark:text-black" />
                 </div>
               </div>
             </div>
             <div>
-              <div className="relative flex items-center justify-center ">
-                <Input
-                  className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
-                  placeholder="select"
-                />
+              <div className="relative flex flex-row items-center justify-center ">
+                <div className="flex flex-col ">
+                  <label>Additional filter</label>
+                  <Input
+                    className="rounded-8 h-[45px] w-[200px] dark:bg-white dark:text-black"
+                    placeholder="select"
+                  />
+                </div>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer">
                   <ChevronDown size={15} className="dark:text-black" />
                 </div>
