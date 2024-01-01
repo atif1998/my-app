@@ -55,6 +55,8 @@ import DialogDemoRemove from "./DialogRemove";
 import { PaginationDemo } from "./Pagination";
 import { number } from "zod";
 import { Filter } from "@/app/assests/svgs/Filter";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const userTemplate = {
   id: "m5gr84i9",
@@ -246,18 +248,21 @@ export const columns: ColumnDef<User>[] = [
               <DialogDemo />
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuLabel
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                gap: "15px",
-                height: "47px",
-              }}
-            >
-              <AiFillEdit />
-              Update User info
-            </DropdownMenuLabel>
+            <Link href={"/edit"}>
+              <DropdownMenuLabel
+                onClick={handleViewUserInfo}
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  gap: "15px",
+                  height: "47px",
+                }}
+              >
+                <AiFillEdit />
+                Update User info
+              </DropdownMenuLabel>
+            </Link>
             <DropdownMenuSeparator />
             <DropdownMenuLabel
               style={{

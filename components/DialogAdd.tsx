@@ -16,17 +16,25 @@ import { useState } from "react";
 const DialogClose = DialogPrimitive.Close;
 
 const user = { name: "Atif ", username: "@atif" };
-export function DialogDemo() {
+const DialogAdd = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <p>View User info</p>
+        <Button
+          type="submit"
+          style={{
+            width: "120px",
+            backgroundColor: " #1D374E",
+          }}
+        >
+          Apply
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[490px] h-[740px]">
+      <DialogContent className="sm:max-w-[490px] h-[770px]">
         <DialogHeader>
           <DialogTitle className="w-full flex justify-center">
             {" "}
-            User information
+            Review Details
           </DialogTitle>
           <DialogDescription
             style={{
@@ -68,7 +76,7 @@ export function DialogDemo() {
             </div>
           </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <span className="flex items-center justify-between">
             <p
               style={{
@@ -103,6 +111,7 @@ export function DialogDemo() {
             >
               Username
             </p>
+            <hr />
             <p
               style={{
                 fontFamily: "Montserrat",
@@ -435,6 +444,7 @@ export function DialogDemo() {
             >
               Mobile Phone
             </p>
+
             <p
               style={{
                 fontFamily: "Montserrat",
@@ -468,6 +478,28 @@ export function DialogDemo() {
               enabeld
             </p>
           </span>
+          <span className="flex items-center justify-between">
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontSize: "12px",
+                fontWeight: "400",
+                lineHeight: "15px",
+              }}
+            >
+              Associated with
+            </p>
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontSize: "12px",
+                fontWeight: "500",
+                lineHeight: "15px",
+              }}
+            >
+              Elastic devs and 4 others
+            </p>
+          </span>
         </div>
         <DialogFooter
           style={{
@@ -477,22 +509,7 @@ export function DialogDemo() {
             margin: "5px",
           }}
         >
-          <DialogPrimitive.Close>
-            <Button
-              style={{
-                width: "130px",
-                height: "40px",
-                backgroundColor: "white",
-                color: "red",
-                border: "1px solid red",
-              }}
-            >
-              Remove user
-            </Button>
-          </DialogPrimitive.Close>
-
           <Button
-            type="submit"
             style={{
               width: "130px",
               height: "40px",
@@ -501,7 +518,7 @@ export function DialogDemo() {
               border: "1px solid #1D374E",
             }}
           >
-            Disable Sign in
+            Continue Edit
           </Button>
           <Button
             type="submit"
@@ -512,10 +529,11 @@ export function DialogDemo() {
               color: "white",
             }}
           >
-            Update user info
+            Add User
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-}
+};
+export default DialogAdd;
