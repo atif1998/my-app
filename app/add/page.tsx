@@ -7,13 +7,31 @@ import { resetValidationSchema } from "../contants/validators/add-validator";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Arrow } from "../assests/svgs/Arrow";
-import PhoneInput from "react-phone-number-input";
+import CountryList, { Country } from "country-list-with-dial-code-and-flag";
 import { Key } from "../assests/svgs/Key";
 import { Facilities } from "../assests/svgs/Facilities";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const Page = () => {
   const [phone, setPhone] = useState("");
+  const [codes, setCodes] = useState<Country[]>([]);
+  const [countryCode, setCountryCode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [valid, setValid] = useState(true);
+
+  const handleChange = (value) => {
+    setPhoneNumber(value);
+    setValid(validatePhoneNumber(value));
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneNumberPattern = /^\+?[1-9]\d{1,14}$/;
+
+    return phoneNumberPattern.test(phoneNumber);
+  };
+
   const {
     register,
     handleSubmit,
@@ -27,6 +45,14 @@ const Page = () => {
   } = useForm<resetValidationSchema>({
     resolver: zodResolver(resetValidationSchema),
   });
+
+  // const countries = CountryList.getAll();
+  // console.log(
+  //   countries,
+  //   countries[0],
+  //   countries[0].dial_code,
+  //   countries[0].flag
+  // );
 
   const Submit: SubmitHandler<resetValidationSchema> = ({
     name,
@@ -549,7 +575,7 @@ const Page = () => {
             </div>
             <div>
               <div className="flex flex-row gap-10 p-2 w-2/3">
-                <div className="w-full flex flex-col gap-1">
+                {/* <div className="w-full flex flex-col gap-1">
                   <label
                     style={{
                       fontSize: "12px",
@@ -565,9 +591,30 @@ const Page = () => {
                     placeholder="Type here..."
                     {...register("officePhone")}
                   />
+                </div> */}
+                <div>
+                  <label
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "500",
+                      fontFamily: "Montserrat",
+                      color: "#19151C",
+                    }}
+                  >
+                    Office phone
+                    <PhoneInput
+                      country={"in"}
+                      {...register("officePhone")}
+                      onChange={handleChange}
+                      inputProps={{
+                        required: true,
+                      }}
+                    />
+                  </label>
+                  {!valid && <p>Please enter a valid phone number.</p>}
                 </div>
 
-                <div className="w-full flex flex-col gap-1">
+                {/* <div className="w-full flex flex-col gap-1">
                   <label
                     style={{
                       fontSize: "12px",
@@ -583,6 +630,28 @@ const Page = () => {
                     placeholder="Type here..."
                     {...register("mobilePhone")}
                   />
+                </div> */}
+
+                <div>
+                  <label
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "500",
+                      fontFamily: "Montserrat",
+                      color: "#19151C",
+                    }}
+                  >
+                    Mobile phone
+                    <PhoneInput
+                      country={"in"}
+                      {...register("mobilePhone")}
+                      onChange={handleChange}
+                      inputProps={{
+                        required: true,
+                      }}
+                    />
+                  </label>
+                  {!valid && <p>Please enter a valid phone number.</p>}
                 </div>
               </div>
             </div>

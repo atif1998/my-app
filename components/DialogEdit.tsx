@@ -444,7 +444,7 @@ const DialogEdit = () => {
             >
               Mobile Phone
             </p>
-
+            <div className="flex-1 border-4 border-dotted " />
             <p
               style={{
                 fontFamily: "Montserrat",
